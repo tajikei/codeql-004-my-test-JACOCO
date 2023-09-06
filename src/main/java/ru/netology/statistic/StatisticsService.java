@@ -13,9 +13,6 @@ public class StatisticsService {
     return currentMax;
   }
 
-  public void test() {
-  }
-
   public static void listFiles(String dir) throws Exception {
     Runtime rt = Runtime.getRuntime();
     Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
