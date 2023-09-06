@@ -1,10 +1,10 @@
 package ru.netology.statistic;
 
-import java.text.Normalizer;
-import java.text.Normalizer.Form;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.stream.Collectors;
 
 
 public class StatisticsService {
@@ -18,22 +18,30 @@ public class StatisticsService {
     return currentMax;
   }
 
-  public static void taji001() throws Exception {
-      // String s はユーザに制御されているかもしれない
-      // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
-      String s = "\uFE64" + "script" + "\uFE65";
+  // public static void taji001() throws Exception {
+  //     // String s はユーザに制御されているかもしれない
+  //     // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
+  //     String s = "\uFE64" + "script" + "\uFE65";
 
-      // 検証する
-      Pattern pattern = Pattern.compile("[<>]"); // 山括弧かどうかのチェック
-      Matcher matcher = pattern.matcher(s);
-      if (matcher.find()) {
-          // ブラックリストに登録されたタグを見つけた場合の処理
-          throw new IllegalStateException();
-      } else {
-          // ...
-      }
-      // 標準化する
-      s = Normalizer.normalize(s, Form.NFKC);
-  }
+  //     // 検証する
+  //     Pattern pattern = Pattern.compile("[<>]"); // 山括弧かどうかのチェック
+  //     Matcher matcher = pattern.matcher(s);
+  //     if (matcher.find()) {
+  //         // ブラックリストに登録されたタグを見つけた場合の処理
+  //         throw new IllegalStateException();
+  //     } else {
+  //         // ...
+  //     }
+  //     // 標準化する
+  //     s = Normalizer.normalize(s, Form.NFKC);
+  // }
+
+  private static String fetchRemoteObject(String location) throws Exception {
+    URL url = new URL(location);
+    URLConnection connection = url.openConnection();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    String body = reader.lines().collect(Collectors.joining());
+    return body;
+}
 
 }
