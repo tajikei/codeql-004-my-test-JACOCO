@@ -18,41 +18,22 @@ public class StatisticsService {
     return currentMax;
   }
 
+  public static void taji001() throws Exception {
+      // String s はユーザに制御されているかもしれない
+      // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
+      String s = "\uFE64" + "script" + "\uFE65";
 
-
-  public void echo() {
-    int i = 0;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
-    i++;
+      // 検証する
+      Pattern pattern = Pattern.compile("[<>]"); // 山括弧かどうかのチェック
+      Matcher matcher = pattern.matcher(s);
+      if (matcher.find()) {
+          // ブラックリストに登録されたタグを見つけた場合の処理
+          throw new IllegalStateException();
+      } else {
+          // ...
+      }
+      // 標準化する
+      s = Normalizer.normalize(s, Form.NFKC);
   }
-
 
 }
