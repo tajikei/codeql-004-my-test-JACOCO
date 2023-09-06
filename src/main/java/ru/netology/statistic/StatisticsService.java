@@ -31,4 +31,8 @@ public class StatisticsService {
 //    System.out.println("Hello2");
 //  }
 
+    public void echo() {
+       int i = 0;
+    }
+
 }
