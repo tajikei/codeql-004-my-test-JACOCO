@@ -76,7 +76,7 @@ public class StatisticsService {
   }
 
   public static void main(String[] args) {
-    System.out.println("Hello");
+    System.out.println("Hello2");
   }
 
 >>>>>>> 7b01b18bf37fc3acc2227946e5ddf05a846e647d
