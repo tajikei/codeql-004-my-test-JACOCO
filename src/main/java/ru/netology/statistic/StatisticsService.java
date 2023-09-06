@@ -10,4 +10,8 @@ public class StatisticsService {
             }
             return currentMax;
         }
+
+        public test() {
+                System.out.prinln("test");
+        }
 }
