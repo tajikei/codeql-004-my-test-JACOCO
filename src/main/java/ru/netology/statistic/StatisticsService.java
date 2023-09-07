@@ -65,6 +65,7 @@ public class StatisticsService {
       System.out.print((char) c);
     }
     String username = "myusername";
+    
     String dap = "mydap";
     // Sensitive environment variable
     String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
@@ -75,30 +76,6 @@ public class StatisticsService {
   }
 
 
-  // 脆弱性のあるコード：https://wiki.sei.cmu.edu/confluence/display/java/IDS07-J.+Sanitize+untrusted+data+passed+to+the+Runtime.exec()+method
-  private static void dirlist2(string dir ) throws Exception {
-    //String dir = System.getProperty("dir");
-    Runtime rt = Runtime.getRuntime();
-    // Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
-    Process proc = rt.exec("sh" + "-c" + "ls " + dir);
-    int result = proc.waitFor();
-    if (result != 0) {
-      System.out.println("process error: " + result);
-    }
-    InputStream in = (result == 0) ? proc.getInputStream() : proc.getErrorStream();
-    int c;
-    while ((c = in.read()) != -1) {
-      System.out.print((char) c);
-    }
-    String username = "myusername";
-    String posswd = "myposswd";
-    // Sensitive environment variable
-    String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
-    String command = "mysql -u" + username + " -p" + posswd + " -h" + databaseUrl;
-
-    // Create a process and execute the command
-    Process process = Runtime.getRuntime().exec(command);
-  }
 
   
 public static int multAccum(int oldAcc, int newVal, int scale) {
