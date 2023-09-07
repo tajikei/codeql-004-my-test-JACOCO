@@ -50,8 +50,8 @@ public class StatisticsService {
   }
 
   // 脆弱性のあるコード：https://wiki.sei.cmu.edu/confluence/display/java/IDS07-J.+Sanitize+untrusted+data+passed+to+the+Runtime.exec()+method
-  private static void dirlist() throws Exception {
-    String dir = System.getProperty("dir");
+  private static void dirlist(string dir ) throws Exception {
+    //String dir = System.getProperty("dir");
     Runtime rt = Runtime.getRuntime();
     // Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
     Process proc = rt.exec("sh" + "-c" + "ls " + dir);
