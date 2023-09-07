@@ -18,23 +18,23 @@ public class StatisticsService {
     return currentMax;
   }
 
-  // public static void taji001() throws Exception {
-  // // String s はユーザに制御されているかもしれない
-  // // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
-  // String s = "\uFE64" + "script" + "\uFE65";
+  public static void taji001() throws Exception {
+    // String s はユーザに制御されているかもしれない
+    // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
+    String s = "\uFE64" + "script" + "\uFE65";
 
-  // // 検証する
-  // Pattern pattern = Pattern.compile("[<>]"); // 山括弧かどうかのチェック
-  // Matcher matcher = pattern.matcher(s);
-  // if (matcher.find()) {
-  // // ブラックリストに登録されたタグを見つけた場合の処理
-  // throw new IllegalStateException();
-  // } else {
-  // // ...
-  // }
-  // // 標準化する
-  // s = Normalizer.normalize(s, Form.NFKC);
-  // }
+    // 検証する
+    Pattern pattern = Pattern.compile("[<>]"); // 山括弧かどうかのチェック
+    Matcher matcher = pattern.matcher(s);
+    if (matcher.find()) {
+      // ブラックリストに登録されたタグを見つけた場合の処理
+      throw new IllegalStateException();
+    } else {
+      // ...
+    }
+    // 標準化する
+    s = Normalizer.normalize(s, Form.NFKC);
+  }
 
   private static String fetchRemoteObject(String location) throws Exception {
     URL url = new URL(location);
@@ -49,8 +49,8 @@ public class StatisticsService {
   private static void dirlist() throws Exception {
     String dir = System.getProperty("dir");
     Runtime rt = Runtime.getRuntime();
-   // Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
-      Process proc = rt.exec("sh" + "-c" + "ls " + dir);
+    // Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
+    Process proc = rt.exec("sh" + "-c" + "ls " + dir);
     int result = proc.waitFor();
     if (result != 0) {
       System.out.println("process error: " + result);
