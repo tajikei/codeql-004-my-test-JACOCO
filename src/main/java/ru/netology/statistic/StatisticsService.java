@@ -25,6 +25,7 @@ public class StatisticsService {
   public static void taji001() throws Exception {
     int a;
     int b = 0;
+    
     // String s はユーザに制御されているかもしれない
     // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
     String s = "\uFE64" + "script" + "\uFE65";
