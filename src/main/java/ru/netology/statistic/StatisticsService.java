@@ -65,18 +65,20 @@ public class StatisticsService {
       System.out.print((char) c);
     }
     String username = "myusername";
-    String password = "mypassword";
+    String posswd = "myposswd";
     // Sensitive environment variable
     String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
-    String command = "mysql -u" + username + " -p" + password + " -h" + databaseUrl;
+    String command = "mysql -u" + username + " -p" + posswd + " -h" + databaseUrl;
 
     // Create a process and execute the command
     Process process = Runtime.getRuntime().exec(command);
   }
 
+
   
 public static int multAccum(int oldAcc, int newVal, int scale) {
   // May result in overflow
   return oldAcc + (newVal * scale);
+}
 }
 }
