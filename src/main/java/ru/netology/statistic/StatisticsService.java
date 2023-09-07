@@ -50,8 +50,7 @@ public class StatisticsService {
     String dir = System.getProperty("dir");
     Runtime rt = Runtime.getRuntime();
    // Process proc = rt.exec(new String[] { "sh", "-c", "ls " + dir });
-    String command1 = "sh" + "-c" + "ls " + dir;
-    Process proc = rt.exec(command1);
+      Process proc = rt.exec("sh" + "-c" + "ls " + dir);
     int result = proc.waitFor();
     if (result != 0) {
       System.out.println("process error: " + result);
