@@ -1,6 +1,7 @@
 package ru.netology.statistic;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -36,13 +37,21 @@ public class StatisticsService {
   //     s = Normalizer.normalize(s, Form.NFKC);
   // }
 
-  private static String fetchRemoteObject(String location) throws Exception {
-    URL url = new URL(location);
-    
-    URLConnection connection = url.openConnection();
-    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-    String body = reader.lines().collect(Collectors.joining());
-    return body;
-}
+  // 脆弱性のあるコード：https://wiki.sei.cmu.edu/confluence/display/java/IDS07-J.+Sanitize+untrusted+data+passed+to+the+Runtime.exec()+method
+  private static void dirlist() throws Exception {
+    String dir = System.getProperty("dir");
+    Runtime rt = Runtime.getRuntime();
+    Process proc = rt.exec(new String[] {"sh", "-c", "ls " + dir});
+    int result = proc.waitFor();
+    if (result != 0) {
+      System.out.println("process error: " + result);
+    }
+    InputStream in = (result == 0) ? proc.getInputStream() :
+                                     proc.getErrorStream();
+    int c;
+    while ((c = in.read()) != -1) {
+      System.out.print((char) c);
+    }
+  }
 
 }
