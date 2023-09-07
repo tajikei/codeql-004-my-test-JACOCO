@@ -37,29 +37,13 @@ public class StatisticsService {
   //     s = Normalizer.normalize(s, Form.NFKC);
   // }
 
-  // 脆弱性のあるコード：https://wiki.sei.cmu.edu/confluence/display/java/IDS07-J.+Sanitize+untrusted+data+passed+to+the+Runtime.exec()+method
-  private static void dirlist() throws Exception {
-    String dir = System.getProperty("dir");
-    Runtime rt = Runtime.getRuntime();
-    Process proc = rt.exec(new String[] {"sh", "-c", "ls " + dir});
-    int result = proc.waitFor();
-    if (result != 0) {
-      System.out.println("process error: " + result);
-    }
-    InputStream in = (result == 0) ? proc.getInputStream() :
-                                     proc.getErrorStream();
-    int c;
-    while ((c = in.read()) != -1) {
-      System.out.print((char) c);
-    }
-    String username = "myusername";
-    String password = "mypassword";
-    // Sensitive environment variable
-    String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
-    String command = "mysql -u" + username + " -p" + password + " -h" + databaseUrl;
-
-    // Create a process and execute the command
-    Process process = Runtime.getRuntime().exec(command);
-  }
+  private static String fetchRemoteObject(String location) throws Exception {
+    URL url = new URL(location);
+    
+    URLConnection connection = url.openConnection();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    String body = reader.lines().collect(Collectors.joining());
+    return body;
+}
 
 }
