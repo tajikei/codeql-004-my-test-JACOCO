@@ -23,6 +23,8 @@ public class StatisticsService {
   }
 
   public static void taji001() throws Exception {
+    int a;
+    int b = 0;
     // String s はユーザに制御されているかもしれない
     // NFKC では \uFE64 は < に、\uFE65 は > に標準化される
     String s = "\uFE64" + "script" + "\uFE65";
@@ -74,14 +76,6 @@ public class StatisticsService {
     // Create a process and execute the command
     Process process = Runtime.getRuntime().exec(command);
   }
+ 
 
-
-
-  
-public static int multAccum(int oldAcc, int newVal, int scale) {
-  // May result in overflow
-  return oldAcc + (newVal * scale);
-}
-}
-}
 }
