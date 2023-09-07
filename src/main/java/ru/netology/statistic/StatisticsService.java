@@ -65,6 +65,7 @@ public class StatisticsService {
       System.out.print((char) c);
     }
     String username = "myusername";
+    
     String dap = "mydap";
     // Sensitive environment variable
     String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
