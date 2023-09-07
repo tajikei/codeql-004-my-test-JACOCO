@@ -65,10 +65,10 @@ public class StatisticsService {
       System.out.print((char) c);
     }
     String username = "myusername";
-    String posswd = "myposswd";
+    String dap = "mydap";
     // Sensitive environment variable
     String databaseUrl = "jdbc:mysql://localhost:3306/mydatabase";
-    String command = "mysql -u" + username + " -p" + posswd + " -h" + databaseUrl;
+    String command = "mysql -u" + username + " -p" + dap + " -h" + databaseUrl;
 
     // Create a process and execute the command
     Process process = Runtime.getRuntime().exec(command);
